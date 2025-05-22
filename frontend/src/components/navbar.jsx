@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import logo from '../assets/campuslinkLogo.png';
 import videoBg from '../assets/4k_5.mp4';
+import UserDropdown from './userDropdown';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -97,19 +98,7 @@ function Navbar() {
             )}
           </div>
 
-          <div className="relative">
-            <button className="focus:outline-none" onClick={() => setDropdownOpen(!dropdownOpen)}>
-              <HiUserCircle className="w-6 h-6 text-white hover:text-yellow-300 cursor-pointer transition-colors" />
-            </button>
-           {dropdownOpen && (
-            <div className="fixed top-16 right-6 w-40 rounded shadow-md py-2 bg-white z-[999]">
-              <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Profile</Link>
-              <Link to="/signin" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign In</Link>
-              <Link to="/signup" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign Up</Link>
-            </div>
-          )}
-
-          </div>
+        <UserDropdown/>
 
           <button className="md:hidden focus:outline-none" onClick={() => setMobileOpen(true)}>
             <HiMenu className="w-8 h-8 text-white" />
