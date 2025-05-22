@@ -3,6 +3,7 @@ import { HiMenu, HiX, HiShoppingCart, HiSearch, HiUserCircle } from 'react-icons
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import logo from '../assets/campuslinkLogo.png';
+import videoBg from '../assets/4k_5.mp4';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,7 +32,7 @@ function Navbar() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      alert(`Searching for: ${searchTerm}`); // Replace with real logic later
+      alert(`Searching for: ${searchTerm}`);
     }
   };
 
@@ -44,29 +45,36 @@ function Navbar() {
       animate={{ height: scrolled ? '4rem' : '5rem' }}
       transition={{ duration: 0.4 }}
     >
-      <motion.div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(270deg, #6366F1, rgb(28,14,227), rgb(2,5,32))' }}
-        animate={{ backgroundPosition: ['0% 50%', '100% 50%'] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-      />
+      {/* Video Background - no cropping */}
+      <div className="absolute inset-0 z-[-1]">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full"
+          style={{ objectFit: 'fill' }}
+        >
+          <source src={videoBg} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       <nav className="relative container mx-auto flex items-center justify-between px-6 h-full">
-        {/* Logo */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ scale: [1, 1.1, 1], opacity: [1, 0.8, 1] }}
+          transition={{ duration: 2, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
           className="text-2xl font-bold text-white cursor-pointer"
           onClick={handleAddToCart}
         >
           <Link to="/" className="flex items-center">
             <img src={logo} alt="logo" width="30px" />
-            <span className="ml-1">ampus<span className="text-yellow-300">Link</span></span>
+            <span className="ml-1">
+              ampus<span className="text-yellow-300">Link</span>
+            </span>
           </Link>
         </motion.div>
 
-        {/* Search Bar */}
         <form onSubmit={handleSearch} className="hidden md:flex flex-grow justify-center px-4">
           <input
             type="text"
@@ -77,7 +85,6 @@ function Navbar() {
           />
         </form>
 
-        {/* Right Controls */}
         <div className="flex items-center space-x-4 relative">
           <HiSearch className="md:hidden w-6 h-6 text-white hover:text-yellow-300 cursor-pointer transition-colors" />
 
@@ -90,43 +97,15 @@ function Navbar() {
             )}
           </div>
 
-          {/* Profile Dropdown */}
-          <div 
-          className="relative">
-            <button
-              className="focus:outline-none"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            >
+          <div className="relative">
+            <button className="focus:outline-none" onClick={() => setDropdownOpen(!dropdownOpen)}>
               <HiUserCircle className="w-6 h-6 text-white hover:text-yellow-300 cursor-pointer transition-colors" />
             </button>
             {dropdownOpen && (
-              <div 
-              style={{ background: 'linear-gradient(270deg, #6366F1, rgb(28,14,227), rgb(2,5,32))'}}
-              className="absolute right-0 mt-2 w-40 bg-white rounded shadow-md py-2 z-50">
-                <Link
-                  to="/profile"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Profile
-                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-300 transition-all group-hover:w-full"></span>
-                </Link>
-                <Link
-                  to="/signin"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Sign In
-                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-300 transition-all group-hover:w-full"></span>
-                </Link>
-                <Link
-                  to="/signup"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Sign Up
-                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-300 transition-all group-hover:w-full"></span>
-                </Link>
+              <div className="absolute right-0 mt-2 w-40 rounded shadow-md py-2 z-50 bg-white">
+                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Profile</Link>
+                <Link to="/signin" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign In</Link>
+                <Link to="/signup" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign Up</Link>
               </div>
             )}
           </div>
@@ -136,18 +115,10 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Desktop Nav Menu */}
         <ul className="hidden md:flex space-x-8 items-center ml-6">
           {['Home', 'Shop', 'Deals', 'About', 'Contact'].map((link) => (
-            <motion.li
-              key={link}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <Link
-                to={`/${link.toLowerCase()}`}
-                className="relative group text-white hover:text-yellow-300 transition-colors"
-              >
+            <motion.li key={link} whileHover={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}>
+              <Link to={`/${link.toLowerCase()}`} className="relative group text-white hover:text-yellow-300 transition-colors">
                 {link}
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-yellow-300 transition-all group-hover:w-full"></span>
               </Link>
@@ -155,7 +126,6 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -180,11 +150,7 @@ function Navbar() {
               <ul className="space-y-6">
                 {['Home', 'Shop', 'Deals', 'About', 'Contact'].map((link) => (
                   <li key={link}>
-                    <Link
-                      to={`/${link.toLowerCase()}`}
-                      className="text-xl font-medium text-gray-800 hover:text-indigo-600 transition-colors"
-                      onClick={() => setMobileOpen(false)}
-                    >
+                    <Link to={`/${link.toLowerCase()}`} className="text-xl font-medium text-gray-800 hover:text-indigo-600 transition-colors" onClick={() => setMobileOpen(false)}>
                       {link}
                     </Link>
                   </li>
