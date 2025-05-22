@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/navbar';
+import Home from './pages/home';
+import Shop from './pages/product details';
+import Deals from './pages/history';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-     <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4 p-4">
-      <h1 className="text-4xl font-bold text-blue-600">Blue Text</h1>
-      <p className="text-green-500 text-lg">Green Text</p>
-      <p className="text-red-500 text-lg">Red Text</p>
-      <p className="text-purple-600 text-lg">Purple Text</p>
-      <p className="text-yellow-500 text-lg">Yellow Text</p>
-      <p className="text-pink-500 text-lg">Pink Text</p>
-      <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
-        Test Button
-      </button>
-    </div>
-    </>
-  )
+    <Router>
+      <Navbar className="fixed"/>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/deals" element={<Deals />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
