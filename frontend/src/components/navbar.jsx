@@ -67,7 +67,7 @@ function Navbar() {
           className="text-2xl font-bold text-white cursor-pointer"
           onClick={handleAddToCart}
         >
-          <Link to="/" className="flex items-center">
+          <Link to="/home" className="flex items-center">
             <img src={logo} alt="logo" width="30px" />
             <span className="ml-1">
               ampus<span className="text-yellow-300">Link</span>
@@ -101,13 +101,14 @@ function Navbar() {
             <button className="focus:outline-none" onClick={() => setDropdownOpen(!dropdownOpen)}>
               <HiUserCircle className="w-6 h-6 text-white hover:text-yellow-300 cursor-pointer transition-colors" />
             </button>
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-40 rounded shadow-md py-2 z-50 bg-white">
-                <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Profile</Link>
-                <Link to="/signin" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign In</Link>
-                <Link to="/signup" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign Up</Link>
-              </div>
-            )}
+           {dropdownOpen && (
+            <div className="fixed top-16 right-6 w-40 rounded shadow-md py-2 bg-white z-[999]">
+              <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Profile</Link>
+              <Link to="/signin" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign In</Link>
+              <Link to="/signup" className="block px-4 py-2 text-sm text-gray-700 hover:text-yellow-300 transition-colors" onClick={() => setDropdownOpen(false)}>Sign Up</Link>
+            </div>
+          )}
+
           </div>
 
           <button className="md:hidden focus:outline-none" onClick={() => setMobileOpen(true)}>
