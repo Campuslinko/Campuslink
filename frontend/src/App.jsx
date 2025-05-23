@@ -8,9 +8,11 @@ import Contact from './pages/Contact';
 import Registration from './pages/signupLogin';
 
 function App() {
+  const pathsWithNavbar = ['/home','/Home','/shop','/Shop','/deals','/Deals','/about','/About'];
+
   return (
     <Router>
-      <Navbar className="fixed"/>
+      {pathsWithNavbar.includes(location.pathname) && <Navbar className="fixed"/>}
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />

@@ -85,9 +85,9 @@ const AuthForm = ({ isLogin, toggleForm }) => {
       </h2>
 
       <div className="flex justify-center space-x-4 mb-4">
-        <button><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" className="w-6" alt="linkedin" /></button>
+        <button><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" className="w-7 rounded-full" alt="linkedin" /></button>
         <button onClick={handleGoogleLogin}><FcGoogle className="text-2xl" /></button>
-        <button><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" className="w-6" alt="facebook" /></button>
+        <button><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" className="w-7 rounded-full" alt="facebook" /></button>
       </div>
 
       <p className="text-sm mb-4 font-semibold text-gray-500">or login with email</p>
