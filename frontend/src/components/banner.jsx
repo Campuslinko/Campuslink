@@ -1,5 +1,5 @@
 import React from 'react';
-import bannerVideo from '../assets/bannerVideo.mp4';
+// import bannerVideo from '../assets/bannerVideo.mp4';
 import { motion } from 'framer-motion';
 
 function Banner() {
@@ -29,7 +29,7 @@ function Banner() {
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
-        src={bannerVideo}
+        src=""
         autoPlay
         loop
         muted

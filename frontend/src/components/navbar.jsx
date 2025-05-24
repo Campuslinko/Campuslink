@@ -3,7 +3,7 @@ import { HiMenu, HiX, HiShoppingCart, HiSearch, HiUserCircle } from 'react-icons
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import logo from '../assets/campuslinkLogo.png';
-import videoBg from '../assets/4k_5.mp4';
+// import videoBg from '../assets/4k_5.mp4';
 import UserDropdown from './userDropdown';
 
 function Navbar() {

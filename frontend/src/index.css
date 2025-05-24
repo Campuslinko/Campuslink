@@ -1,1 +1,21 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom CSS classes can go here.
+   Use @apply to pull in Tailwind utilities.
+*/
+
+/* Example of a custom component class using @apply for v3 */
+.btn-primary {
+  @apply bg-campus-blue text-white py-3 px-6 text-lg font-medium rounded-md transition-colors duration-200;
+}
+.btn-primary:hover {
+  /* This is how you apply hover in custom CSS for v3 */
+  @apply bg-campus-blue-dark;
+}
+
+/* Base styles that might be applied */
+body {
+  @apply font-sans text-gray-700 bg-gray-50;
+}
